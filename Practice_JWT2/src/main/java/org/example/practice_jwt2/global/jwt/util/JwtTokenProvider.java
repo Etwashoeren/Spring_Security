@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 import java.util.Date;
 
 @Component
@@ -30,36 +31,34 @@ public class JwtTokenProvider {
         this.refreshedMs = refreshedMS;
     }
 
-    public String generateAccessToken(String username, String role) {
+    public String generateAccessToken(String username) {
 
         Date now = new Date();
         Date accessTokenExpiresAt = new Date(now.getTime() + expiredMs);
 
         return Jwts.builder()
                 .claim("username", username)
-                .claim("role", role)
                 .issuedAt(now)
                 .expiration(accessTokenExpiresAt)
                 .signWith(secretKey)
                 .compact();
     }
 
-    public String generateRefreshToken(String username, String role) {
+    public String generateRefreshToken(String username) {
         Date now = new Date();
         Date refreshTokenExpiresAt = new Date(now.getTime() + refreshedMs);
 
         return Jwts.builder()
                 .claim("username", username)
-                .claim("role", role)
                 .issuedAt(now)
                 .expiration(refreshTokenExpiresAt)
                 .signWith(secretKey)
                 .compact();
     }
 
-    public TokenInfo generateToken(String username, String role) {
-        String accessToken = generateAccessToken(username, role);
-        String refreshToken = generateRefreshToken(username, role);
+    public TokenInfo generateToken(String username) {
+        String accessToken = generateAccessToken(username);
+        String refreshToken = generateRefreshToken(username);
 
         return TokenInfo.builder()
                 .grantType("Bearer")
@@ -92,9 +91,8 @@ public class JwtTokenProvider {
                 .parseSignedClaims(token).getPayload();
 
         String username = claims.get("username", String.class);
-        String role = claims.get("role", String.class);
 
-        return new UsernamePasswordAuthenticationToken(username, role);
+        return new UsernamePasswordAuthenticationToken(username, "", Collections.emptyList());
     }
 
 }

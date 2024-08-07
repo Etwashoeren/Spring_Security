@@ -55,8 +55,7 @@ public class AuthService {
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
 
         String username = authentication.getName();
-        String role = authentication.getAuthorities().toString();
 
-        return jwtTokenProvider.generateToken(username, role);
+        return jwtTokenProvider.generateToken(username);
     }
 }

@@ -30,11 +30,4 @@ public class AuthController {
 
         return new ResponseTemplate<>(HttpStatus.OK, "로그인 완료", tokenInfo);
     }
-
-    @GetMapping("/test")
-    public ResponseTemplate<String> test() {
-        String test = "안녕하세요.";
-
-        return new ResponseTemplate<>(HttpStatus.OK, "완료", test);
-    }
 }
