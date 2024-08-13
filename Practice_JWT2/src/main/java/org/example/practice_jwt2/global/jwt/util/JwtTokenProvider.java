@@ -56,9 +56,7 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    public TokenInfo generateToken(String username) {
-        String accessToken = generateAccessToken(username);
-        String refreshToken = generateRefreshToken(username);
+    public TokenInfo generateToken(String accessToken, String refreshToken) {
 
         return TokenInfo.builder()
                 .grantType("Bearer")

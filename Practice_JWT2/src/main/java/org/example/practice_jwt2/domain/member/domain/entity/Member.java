@@ -2,6 +2,7 @@ package org.example.practice_jwt2.domain.member.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.example.practice_jwt2.global.jwt.domain.entity.RefreshToken;
 
 @Entity
 @Getter
@@ -20,4 +21,5 @@ public class Member {
 
     @Enumerated(EnumType.STRING)
     private MemberRole role;
+
 }
