@@ -36,4 +36,5 @@ out/
 ### VS Code ###
 .vscode/
 
+# application.yml 숨김 처리
 src/**/application.yml
