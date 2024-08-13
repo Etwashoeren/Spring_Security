@@ -2,7 +2,6 @@ package org.example.practice_jwt2.domain.auth.api;
 
 import org.example.practice_jwt2.domain.auth.applicatioin.AuthService;
 import org.example.practice_jwt2.domain.auth.dto.AuthRequestDTO;
-import org.example.practice_jwt2.domain.auth.dto.ReissueResponseDTO;
 import org.example.practice_jwt2.domain.member.domain.entity.Member;
 import org.example.practice_jwt2.domain.member.dto.MemberDTO;
 import org.example.practice_jwt2.global.jwt.dto.TokenInfo;
